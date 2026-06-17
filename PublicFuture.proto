@@ -1,0 +1,255 @@
+syntax = "proto3";
+
+message ContractWrapper {
+    string symbol = 1;
+    string channel = 2;
+    int64 ts = 3;
+
+    oneof payload {
+        OrderChange orderChange = 1001;
+        AssetChange assetChange = 1002;
+        BonusNotify bonusNotify = 1003;
+        LeverageMode leverageMode = 1004;
+        NotifyGeneric notifyGeneric = 1005;
+        LiquidateRiskChange liquidateRiskChange = 1006;
+        MarketOrderDeal marketOrderDeal = 1007;
+        OrderDealDetail orderDealDetail = 1008;
+        ContractPlanOrder contractPlanOrder = 1009;
+        PositionModeResult positionModeResult = 1010;
+        PositionChange positionChange = 1011;
+        PositionReverseChange positionReverseChange = 1012;
+        UserPreference userPreference = 1013;
+        ContractStopOrder contractStopOrder = 1014;
+        ContractUserRiskLimit contractUserRiskLimit = 1015;
+        ContractStopPlanOrder contractStopPlanOrder = 1016;
+        ContractTrackOrder contractTrackOrder = 1017;
+        OrderChase orderChase = 1018;
+        IndexPrice indexPrice = 2001;
+        CommonConfig commonConfig = 2002;
+        ContractExtra contractExtra = 2003;
+        Contract contract = 2004;
+        Deal deal = 2005;
+        Deals deals = 2006;
+        MarketOrderSetting marketOrderSetting = 2100;
+        WsKLine wsKline = 2101;
+        FundingRate fundingRate = 2102;
+        FairPrice fairPrice = 2013;
+        DepthStepInfo depthStepInfo = 2014;
+        DepthInfo depthInfo = 2015;
+        DepthMerge depthMerge = 2016;
+        TickerDetail tickerDetail = 2017;
+        TickerList tickerList = 2018;
+        TickList tickList = 2019;
+    }
+}
+
+message DepthInfo {
+    repeated Order bids = 1;
+    repeated Order asks = 2;
+    int64 lastUpdateId = 3;
+}
+
+message DepthMerge {
+    repeated Order bids = 1;
+    repeated Order asks = 2;
+}
+
+message Order {
+    string price = 1;
+    string quantity = 2;
+}
+
+message TickerDetail {
+    string symbol = 1;
+    string lastPrice = 2;
+    string riseFallRate = 3;
+    string fairPrice = 4;
+    string indexPrice = 5;
+    string volume24 = 6;
+    string amount24 = 7;
+    string maxBidPrice = 8;
+    string minAskPrice = 9;
+    string lower24Price = 10;
+    string high24Price = 11;
+    int64 timestamp = 12;
+    string bid1 = 13;
+    string ask1 = 14;
+    string holdVol = 15;
+    string riseFallValue = 16;
+    string fundingRate = 17;
+    string zone = 18;
+    repeated string riseFallRates = 19;
+    repeated string riseFallRatesOfTimezone = 20;
+}
+
+
+message TickerList {
+    repeated TickerDetail tickers = 1;
+}
+
+message FundingRate {
+    string symbol = 1;
+    string rate = 2;
+    int64 nextFundingTime = 3;
+}
+
+message IndexPrice {
+    string symbol = 1;
+    string price = 2;
+}
+
+message FairPrice {
+    string symbol = 1;
+    string price = 2;
+}
+
+message OrderChange {
+    string orderId = 1;
+    string status = 2;
+    string price = 3;
+    string quantity = 4;
+}
+
+message AssetChange {
+    string asset = 1;
+    string balanceChange = 2;
+}
+
+message MarketOrderDeal {
+    string dealId = 1;
+    string orderId = 2;
+    string price = 3;
+    string quantity = 4;
+}
+
+message PositionChange {
+    string positionId = 1;
+    string symbol = 2;
+    string quantity = 3;
+}
+
+message Deals {
+    repeated Deal deals = 1;
+}
+
+message Deal {
+    string p = 1;   // Giá giao dịch
+    string v = 2;   // Khối lượng giao dịch
+    int32 t = 3;    // Loại giao dịch
+    int32 o = 4;    // Lệnh mở
+    int32 m = 5;    // Maker/Taker
+    int64 ts = 6;   // Timestamp
+}
+
+message BonusNotify {
+    string bonusId = 1;
+    string type = 2;
+    string amount = 3;
+    string status = 4;
+}
+
+message LeverageMode {
+    string symbol = 1;
+    string mode = 2;
+}
+
+message NotifyGeneric {
+    string messageId = 1;
+    string content = 2;
+    string type = 3;
+}
+
+message LiquidateRiskChange {
+    string symbol = 1;
+    string riskLevel = 2;
+    string marginCall = 3;
+}
+
+message OrderDealDetail {
+    string orderId = 1;
+    string tradeId = 2;
+    string price = 3;
+    string quantity = 4;
+}
+
+message ContractPlanOrder {
+    string orderId = 1;
+    string status = 2;
+}
+
+message PositionModeResult {
+    string mode = 1;
+}
+
+message PositionReverseChange {
+    string positionId = 1;
+    string changeAmount = 2;
+}
+
+message UserPreference {
+    string userId = 1;
+    string settings = 2;
+}
+
+message ContractStopOrder {
+    string orderId = 1;
+    string stopPrice = 2;
+}
+
+message ContractUserRiskLimit {
+    string userId = 1;
+    string riskLimit = 2;
+}
+
+message ContractStopPlanOrder {
+    string orderId = 1;
+    string triggerPrice = 2;
+}
+
+message ContractTrackOrder {
+    string orderId = 1;
+    string trackPrice = 2;
+}
+
+message OrderChase {
+    string orderId = 1;
+    string chasePrice = 2;
+}
+
+message CommonConfig {
+    string key = 1;
+    string value = 2;
+}
+
+message ContractExtra {
+    string contractId = 1;
+    string leverage = 2;
+}
+
+message Contract {
+    string contractId = 1;
+    string symbol = 2;
+}
+
+message MarketOrderSetting {
+    string settingId = 1;
+    string value = 2;
+}
+
+message WsKLine {
+    string symbol = 1;
+    string open = 2;
+    string high = 3;
+    string low = 4;
+    string close = 5;
+    string volume = 6;
+}
+
+message DepthStepInfo {
+    string step = 1;
+    string count = 2;
+}
+
+message TickList {
+    repeated TickerDetail ticks = 1;
+}
