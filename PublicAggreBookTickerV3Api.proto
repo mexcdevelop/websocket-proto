@@ -13,5 +13,7 @@ message PublicAggreBookTickerV3Api {
   string bidQuantity = 2;
   string askPrice = 3;
   string askQuantity = 4;
+  string version = 5;
+  int64 lastOrderCreateTime = 6;
 }
 
