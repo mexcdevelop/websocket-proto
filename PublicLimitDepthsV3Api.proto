@@ -13,6 +13,7 @@ message PublicLimitDepthsV3Api {
   repeated PublicLimitDepthV3ApiItem bids  = 2;
   string eventType = 3;
   string version = 4;
+  int64 lastOrderCreateTime = 5;
 }
 
 message PublicLimitDepthV3ApiItem {

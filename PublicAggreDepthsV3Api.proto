@@ -14,6 +14,7 @@ message PublicAggreDepthsV3Api {
   string eventType = 3;
   string fromVersion = 4;
   string toVersion = 5;
+  int64 lastOrderCreateTime = 6;
 }
 
 message PublicAggreDepthV3ApiItem {

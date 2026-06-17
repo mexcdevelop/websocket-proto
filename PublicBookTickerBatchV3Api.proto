@@ -10,5 +10,7 @@ option java_outer_classname = "PublicBookTickerBatchV3ApiProto";
 
 message PublicBookTickerBatchV3Api {
   repeated PublicBookTickerV3Api items  = 1;
+  string version = 2;
+  int64 lastOrderCreateTime = 3;
 }
 
