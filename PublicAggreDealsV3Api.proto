@@ -19,4 +19,6 @@ message PublicAggreDealsV3ApiItem {
   int32 tradeType = 3;
   int64 time = 4;
   string tradeId = 5;
+  bool isRpi = 6;
+  int64 version = 6;
 }
