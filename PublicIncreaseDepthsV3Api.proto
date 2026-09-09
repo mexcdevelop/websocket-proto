@@ -18,4 +18,5 @@ message PublicIncreaseDepthsV3Api {
 message PublicIncreaseDepthV3ApiItem {
   string price = 1;
   string quantity = 2;
+  int64 time = 3;
 }
